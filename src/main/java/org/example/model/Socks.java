@@ -2,13 +2,11 @@ package org.example.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity(name = "socks_table")
+@Entity
+@Table(name = "socks")
 @Data
 public class Socks {
     @Id

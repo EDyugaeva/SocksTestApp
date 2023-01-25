@@ -9,16 +9,17 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import org.webjars.NotFoundException;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @RestControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(NotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handleNotFoundException(NotFoundException notFoundException) {
+    @ExceptionHandler(SQLException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleNotFoundException(SQLException sqlException) {
         return ErrorResponse.builder()
-                .message(notFoundException.getMessage())
-                .httpStatus(HttpStatus.NOT_FOUND)
+                .message(sqlException.getMessage())
+                .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
                 .build();
     }
 
@@ -27,6 +28,14 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     public ErrorResponse handleIllegalArgumentException(IllegalArgumentException illegalArgumentException) {
         return ErrorResponse.builder()
                 .message(illegalArgumentException.getMessage())
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .build();
+    }
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleIllegalArgumentException(NotFoundException notFoundException) {
+        return ErrorResponse.builder()
+                .message(notFoundException.getMessage())
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .build();
     }

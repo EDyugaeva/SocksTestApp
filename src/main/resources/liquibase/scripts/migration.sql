@@ -1,7 +1,7 @@
 --liquibase formatted sql
 --changeset eradomskaya:1
 
-CREATE TABLE socks_table
+CREATE TABLE socks
 (
     id   SERIAL PRIMARY KEY ,
     colour varchar(255) ,

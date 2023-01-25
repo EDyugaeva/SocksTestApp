@@ -4,10 +4,10 @@ import org.example.model.Socks;
 import org.example.model.typeOperation;
 import org.example.repository.SocksRepository;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Collection;
 
 @Service
 public class SocksServiceImpl implements SocksService {
@@ -20,6 +20,9 @@ public class SocksServiceImpl implements SocksService {
 
     @Override
     public Socks incomeSocks(int quantity, int cottonPart, String colour) {
+        if (quantity < 0 || cottonPart < 0 || cottonPart > 100 || colour.isBlank()) {
+            throw new IllegalArgumentException("Mistake in parameters");
+        }
         Socks newSock = new Socks(colour, quantity, cottonPart);
         newSock.setDate(Timestamp.valueOf(LocalDateTime.now()));
         newSock.setTypeOperation(typeOperation.INCOME);
@@ -38,13 +41,34 @@ public class SocksServiceImpl implements SocksService {
         return socksRepository.save(newSock);
     }
 
-    @Override
-    public Socks getSock(long id) {
-        return socksRepository.findById(id).orElse(new Socks());
-    }
 
+    /**
+     * Getting amount of socks in parameters
+     * @param colour - String, colour
+     * @param operation - moreThan/equals/lessThan (ignore case)
+     * @param cottonPart - int, positive, less than 100
+     * @return amount (int)
+     */
     @Override
-    public Collection<Socks> getAllSocks() {
-        return socksRepository.findAll();
+    public int getAmountOfSocksByParameters(String colour, String operation, int cottonPart) {
+        if (colour.isEmpty() || operation.isEmpty() || cottonPart < 0 || cottonPart > 100 ) {
+            throw new IllegalArgumentException("Wrong parameters");
+        }
+        Integer result = null;
+        if (operation.equalsIgnoreCase("moreThan")) {
+            result = socksRepository.getQuantityByColourAndMoreThanCottonPart(colour, cottonPart);
+        }
+
+        if (operation.equalsIgnoreCase("equals")) {
+            result = socksRepository.getQuantityByColourAndEqualsCottonPart(colour, cottonPart);
+        }
+
+        if (operation.equalsIgnoreCase("lessThan")) {
+            result = socksRepository.getQuantityByColourAndLessThenCottonPart(colour, cottonPart);
+        }
+        if (result == null) {
+            throw new NotFoundException("There are any socks in this type");
+        }
+        return result;
     }
 }
