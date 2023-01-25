@@ -45,6 +45,6 @@ public class SocksServiceImpl implements SocksService {
 
     @Override
     public Collection<Socks> getAllSocks() {
-        return null;
+        return socksRepository.findAll();
     }
 }
