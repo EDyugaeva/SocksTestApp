@@ -31,7 +31,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .build();
     }
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleIllegalArgumentException(NotFoundException notFoundException) {
         return ErrorResponse.builder()

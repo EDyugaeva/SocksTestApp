@@ -7,6 +7,7 @@
 * база данных PostgreSQL с применением Liquibase для версионирования схемы
 * RestAPI (только post и get запросы - по заданию)
 * Mokito для Unit-тестирования
+* применен Controller advisor(@RestControllerAdvice) для управления исключениями
 
 
 ### Функциональность
@@ -45,6 +46,7 @@ The application, a test task, is designed to automate the accounting of receipts
 * database PostgreSQL with Liquibase for schema versioning
 * RestAPI (only post and get requests)
 * Mokito for Unit tests
+* controller advisor (@RestControllerAdvice) for hadling exceptions
 
 
 ### FUNCTIONALITY
