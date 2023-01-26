@@ -9,7 +9,7 @@ import org.example.servicies.SocksService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/socks/")
+@RequestMapping("/api/socks")
 @AllArgsConstructor
 public class SocksController {
 
@@ -26,7 +26,7 @@ public class SocksController {
             })
     @PostMapping("/income")
     public Socks incomeSocks(@RequestParam(name = "colour") @Parameter(description = "Socks colour", example = "red") String colour,
-                             @RequestParam(name = "cotton part") @Parameter(description = "Cotton part in percentage, from 0 to 100", example = "50") int cottonPart,
+                             @RequestParam(name = "cottonPart") @Parameter(description = "Cotton part in percentage, from 0 to 100", example = "50") int cottonPart,
                              @RequestParam(name = "quantity") @Parameter(description = "Quantity, more than 0", example = "15") int quantity) {
         return socksService.incomeSocks(quantity, cottonPart, colour);
 
@@ -43,7 +43,7 @@ public class SocksController {
             })
     @PostMapping("/outcome")
     public Socks outcome(@RequestParam(name = "colour") @Parameter(description = "Socks colour", example = "red") String colour,
-                         @RequestParam(name = "cotton part") @Parameter(description = "Cotton part in percentage, from 0 to 100", example = "50") int cottonPart,
+                         @RequestParam(name = "cottonPart") @Parameter(description = "Cotton part in percentage, from 0 to 100", example = "50") int cottonPart,
                          @RequestParam(name = "quantity") @Parameter(description = "Quantity, more than 0", example = "15") int quantity) {
         return socksService.outcomeSocks(quantity, cottonPart, colour);
 
@@ -60,7 +60,7 @@ public class SocksController {
                             description = "Error from API")
             }
     )
-    @GetMapping(path = "/finding")
+    @GetMapping()
     public int getAmountOfSocksByColour(@RequestParam(name = "colour") @Parameter(description = "Socks colour", example = "red") String colour,
                                         @RequestParam(name = "operation")@Parameter(description = "Operation: lessThan, moreThan or equals", example = "equals") String operation,
                                         @RequestParam("cottonPart") @Parameter(description = "Cotton part in percentage, from 0 to 100", example = "50") int cottonPart) {

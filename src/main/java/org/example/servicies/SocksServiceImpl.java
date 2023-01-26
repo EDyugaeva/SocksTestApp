@@ -25,7 +25,7 @@ public class SocksServiceImpl implements SocksService {
      */
     @Override
     public Socks incomeSocks(int quantity, int cottonPart, String colour) {
-        if (quantity < 0 || cottonPart < 0 || cottonPart > 100 || colour.isBlank()) {
+        if (quantity <= 0 || cottonPart < 0 || cottonPart > 100 || colour.isBlank()) {
             throw new IllegalArgumentException("Mistake in parameters");
         }
         Socks newSock = new Socks(colour, quantity, cottonPart);
@@ -42,7 +42,7 @@ public class SocksServiceImpl implements SocksService {
      */
     @Override
     public Socks outcomeSocks(int quantity, int cottonPart, String colour) {
-        if (quantity < 0 || cottonPart < 0 || cottonPart > 100 || colour.isBlank()) {
+        if (quantity <= 0 || cottonPart < 0 || cottonPart > 100 || colour.isBlank()) {
             throw new IllegalArgumentException("Mistake in parameters");
         }
         Socks newSock = new Socks(colour, -quantity, cottonPart);
