@@ -6,7 +6,7 @@
 ### Используются
 * база данных PostgreSQL с применением Liquibase для версионирования схемы
 * RestAPI (только post и get запросы - по заданию)
-* Mokito для Unit-тестирования
+* Mokito для тестирование Controller
 * применен Controller advisor(@RestControllerAdvice) для управления исключениями
 
 
@@ -18,7 +18,7 @@
 
 Тип записи
  возможен только двух видов: отпуск или приход носков. От этого зависит значение
-количества носков (положительное или отрицательное). Выполнен в контроллерами с использованием
+количества носков (положительное или отрицательное). Тип записи выполнен в контроллерами использованием
 POST запросов: /api/socks/outcome и /api/socks/income
  
 Также создан GET запрос, возвращающий общее количество носков на складе, соответствующих
@@ -45,7 +45,7 @@ The application, a test task, is designed to automate the accounting of receipts
 ### Uses
 * database PostgreSQL with Liquibase for schema versioning
 * RestAPI (only post and get requests)
-* Mokito for Unit tests
+* Mokito for test controller 
 * controller advisor (@RestControllerAdvice) for hadling exceptions
 
 

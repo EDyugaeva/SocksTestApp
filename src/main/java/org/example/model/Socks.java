@@ -13,7 +13,7 @@ public class Socks {
     @GeneratedValue
     private Long id;
 
-    private String colour;
+    private String color;
     private int cottonPart;
     @Column(name = "quantity")
     private int quantity;
@@ -24,8 +24,8 @@ public class Socks {
     public Socks() {
     }
 
-    public Socks(String colour, int quantity, int cottonPart) {
-        this.colour = colour;
+    public Socks(String color, int quantity, int cottonPart) {
+        this.color = color;
         this.cottonPart = cottonPart;
         this.quantity = quantity;
     }

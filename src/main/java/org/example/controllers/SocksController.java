@@ -25,10 +25,10 @@ public class SocksController {
                             description = "Error from API")
             })
     @PostMapping("/income")
-    public Socks incomeSocks(@RequestParam(name = "colour") @Parameter(description = "Socks colour", example = "red") String colour,
+    public Socks incomeSocks(@RequestParam(name = "color") @Parameter(description = "Socks color", example = "red") String color,
                              @RequestParam(name = "cottonPart") @Parameter(description = "Cotton part in percentage, from 0 to 100", example = "50") int cottonPart,
                              @RequestParam(name = "quantity") @Parameter(description = "Quantity, more than 0", example = "15") int quantity) {
-        return socksService.incomeSocks(quantity, cottonPart, colour);
+        return socksService.incomeSocks(quantity, cottonPart, color);
 
     }
 
@@ -42,10 +42,10 @@ public class SocksController {
                             description = "Error from API")
             })
     @PostMapping("/outcome")
-    public Socks outcome(@RequestParam(name = "colour") @Parameter(description = "Socks colour", example = "red") String colour,
+    public Socks outcome(@RequestParam(name = "color") @Parameter(description = "Socks color", example = "red") String color,
                          @RequestParam(name = "cottonPart") @Parameter(description = "Cotton part in percentage, from 0 to 100", example = "50") int cottonPart,
                          @RequestParam(name = "quantity") @Parameter(description = "Quantity, more than 0", example = "15") int quantity) {
-        return socksService.outcomeSocks(quantity, cottonPart, colour);
+        return socksService.outcomeSocks(quantity, cottonPart, color);
 
     }
 
@@ -61,10 +61,10 @@ public class SocksController {
             }
     )
     @GetMapping()
-    public int getAmountOfSocksByColour(@RequestParam(name = "colour") @Parameter(description = "Socks colour", example = "red") String colour,
+    public int getAmountOfSocksByColor(@RequestParam(name = "color") @Parameter(description = "Socks color", example = "red") String color,
                                         @RequestParam(name = "operation")@Parameter(description = "Operation: lessThan, moreThan or equals", example = "equals") String operation,
                                         @RequestParam("cottonPart") @Parameter(description = "Cotton part in percentage, from 0 to 100", example = "50") int cottonPart) {
-        return socksService.getAmountOfSocksByParameters(colour, operation, cottonPart);
+        return socksService.getAmountOfSocksByParameters(color, operation, cottonPart);
     }
 
 }
