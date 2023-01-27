@@ -46,7 +46,7 @@ The application, a test task, is designed to automate the accounting of receipts
 * database PostgreSQL with Liquibase for schema versioning
 * RestAPI (only post and get requests)
 * Mokito for test controller 
-* controller advisor (@RestControllerAdvice) for hadling exceptions
+* controller advisor (@RestControllerAdvice) for handling exceptions
 
 
 ### Functionality
