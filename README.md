@@ -39,7 +39,7 @@ POST запросов: /api/socks/outcome и /api/socks/income
 
 # Automation of stock accounting for socks
 
-### О приложении
+### About
 The application, a test task, is designed to automate the accounting of receipts and issues of socks from a warehouse.
 
 ### Uses
@@ -49,7 +49,7 @@ The application, a test task, is designed to automate the accounting of receipts
 * controller advisor (@RestControllerAdvice) for hadling exceptions
 
 
-### FUNCTIONALITY
+### Functionality
 The application consists of one model (table), repository, service and controller.
 The table has columns: id (automatically), a sock color,a socks' quantity, a
 percentage of cotton, a date of the entry and a type of entry. An entry date does not require
