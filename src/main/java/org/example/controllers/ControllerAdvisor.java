@@ -19,14 +19,17 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     public ErrorResponse handleNotFoundException(SQLException sqlException) {
         return ErrorResponse.builder()
                 .message(sqlException.getMessage())
+                .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
                 .build();
     }
+
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleIllegalArgumentException(IllegalArgumentException illegalArgumentException) {
         return ErrorResponse.builder()
                 .message(illegalArgumentException.getMessage())
+                .httpStatus(HttpStatus.BAD_REQUEST)
                 .build();
     }
     @ExceptionHandler(NotFoundException.class)
@@ -34,23 +37,19 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     public ErrorResponse handleIllegalArgumentException(NotFoundException notFoundException) {
         return ErrorResponse.builder()
                 .message(notFoundException.getMessage())
+                .httpStatus(HttpStatus.BAD_REQUEST)
                 .build();
     }
 
     @ExceptionHandler(IOException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleIOException(IOException ioException) {
         return ErrorResponse.builder()
                 .message(ioException.getMessage())
+                .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
                 .build();
     }
 
 
-    @ExceptionHandler(NullPointerException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleNullPointerException(NullPointerException nullPointerException) {
-        return ErrorResponse.builder()
-                .message(nullPointerException.getMessage())
-                .build();
-    }
+
 }

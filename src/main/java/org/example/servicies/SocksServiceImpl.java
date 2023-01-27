@@ -24,7 +24,7 @@ public class SocksServiceImpl implements SocksService {
      *
      * @param quantity   must be positive
      * @param cottonPart from 0 to 100
-     * @param color     String
+     * @param color      String
      * @return new object of Socks with current time and date and type of operation - income
      */
     @Override
@@ -44,7 +44,7 @@ public class SocksServiceImpl implements SocksService {
      *
      * @param quantity   must be positive, reverse inside the method
      * @param cottonPart from 0 to 100
-     * @param color     String
+     * @param color      String
      * @return new object of Socks with current time and date and type of operation - outcome
      */
     @Override
@@ -64,7 +64,7 @@ public class SocksServiceImpl implements SocksService {
     /**
      * Getting amount of socks in parameters
      *
-     * @param color     - String, color
+     * @param color      - String, color
      * @param operation  - moreThan/equals/lessThan (ignore case)
      * @param cottonPart - int, positive, less than 100
      * @return amount (int)
@@ -103,9 +103,10 @@ public class SocksServiceImpl implements SocksService {
 
     /**
      * Checking if there were a mistake in parameters
-     * @param color of socks
+     *
+     * @param color      of socks
      * @param cottonPart of sosks
-     * @param quantity of theoretical outcome
+     * @param quantity   of theoretical outcome
      */
     private void checkingOnMistakes(String color, int cottonPart, int quantity) {
         if (quantity <= 0 || cottonPart < 0 || cottonPart > 100 || color.isBlank()) {
@@ -115,18 +116,23 @@ public class SocksServiceImpl implements SocksService {
     }
 
 
-
     /**
      * Checking if sum quantity of socks is not enough to make an outcome
-     * @param color of socks
+     *
+     * @param color      of socks
      * @param cottonPart of sosks
-     * @param quantity of theoretical outcome
+     * @param quantity   of theoretical outcome
      */
     private void checkingOutcomeSock(String color, int cottonPart, int quantity) {
-        int sum = socksRepository.getQuantityByColorAndEqualsCottonPart(color, cottonPart);
-        if (sum < quantity) {
-            logger.info("Quantity of outcome socks with color = {} and cotton part {} is more than sum quantity of socks", color, cottonPart);
-            throw new IllegalArgumentException("Quantity of outcome is more than sum quantity of socks");
+        try {
+            int sum = socksRepository.getQuantityByColorAndEqualsCottonPart(color, cottonPart);
+            if (sum < quantity) {
+                logger.info("Quantity of outcome socks with color = {} and cotton part {} is more than sum quantity of socks", color, cottonPart);
+                throw new IllegalArgumentException("Quantity of outcome is more than sum quantity of socks");
+            }
+        } catch (NullPointerException e) {
+            logger.info("There are not any socks in this parameters");
+            throw new IllegalArgumentException("There are not any socks in this parameters");
         }
     }
 }

@@ -22,7 +22,7 @@ public class SocksController {
                     @ApiResponse(responseCode = "400",
                             description = "Error in parameter"),
                     @ApiResponse(responseCode = "500",
-                            description = "Error from API")
+                            description = "Error from database")
             })
     @PostMapping("/income")
     public Socks incomeSocks(@RequestParam(name = "color") @Parameter(description = "Socks color", example = "red") String color,
@@ -39,7 +39,7 @@ public class SocksController {
                     @ApiResponse(responseCode = "400",
                             description = "Error in parameter"),
                     @ApiResponse(responseCode = "500",
-                            description = "Error from API")
+                            description = "Error from database")
             })
     @PostMapping("/outcome")
     public Socks outcome(@RequestParam(name = "color") @Parameter(description = "Socks color", example = "red") String color,
@@ -57,7 +57,7 @@ public class SocksController {
                     @ApiResponse(responseCode = "400",
                             description = "Error in parameter"),
                     @ApiResponse(responseCode = "500",
-                            description = "Error from API")
+                            description = "Error from database")
             }
     )
     @GetMapping()

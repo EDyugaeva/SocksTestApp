@@ -37,7 +37,7 @@ POST запросов: /api/socks/outcome и /api/socks/income
 ### Обо мне
 Екатерина, начинающий Java-разработчик
 
-# Автоматизация учета склада носков
+# Automation of stock accounting for socks
 
 ### О приложении
 The application, a test task, is designed to automate the accounting of receipts and issues of socks from a warehouse.
